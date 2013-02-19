@@ -3,6 +3,7 @@ module Promiscuous::Publisher
   autoload :Model, :Operation, :MockGenerator, :Lint
 
   extend ActiveSupport::Concern
+  extend Lint
 
   included do
     include Model::Mongoid      if defined?(Mongoid::Document)  && self < Mongoid::Document

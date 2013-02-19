@@ -1,8 +1,9 @@
 module Promiscuous::Subscriber
   extend Promiscuous::Autoload
-  autoload :Worker, :Payload, :Model, :Operation
+  autoload :Worker, :Payload, :Model, :Operation, :Lint
 
   extend ActiveSupport::Concern
+  extend Lint
 
   included do
     if defined?(Mongoid::Document) && self < Mongoid::Document
