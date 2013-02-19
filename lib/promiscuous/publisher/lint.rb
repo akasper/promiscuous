@@ -16,8 +16,8 @@ module Promiscuous::Publisher::Lint
     Promiscuous::Publisher::Model.publishers.each do |publisher|
       [publisher, publisher.descendants].flatten.each do |model|
         mock = mocks[model.publish_as]
-        raise_if("#{model.publish_as} not included in mocks. Regenerate your mocks.") { mock.nil? }
-        raise_if("#{model.publish_as} doesn't match #{mock.published_attrs} in mock. Regenerate your mocks.") { model.published_attrs != mock.published_attrs }
+        raise_if  mock.nil?, "#{model.publish_as} not included in mocks. Regenerate your mocks."
+        raise_if model.published_attrs != mock.published_attrs, "#{model.publish_as} doesn't match #{mock.published_attrs} in mock. Regenerate your mocks."
       end
 
       mock = mocks[publisher.publish_as]
